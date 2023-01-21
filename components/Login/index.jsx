@@ -7,6 +7,7 @@ import { login } from "../../api/authRequests";
 
 const submitLogin = async (data, setErrorFlag, router, setUser) => {
   // send  request
+  console.log("THE DATA IS: ", data);
   const response = await login(data);
   // if status is 200, redirect to login
   if (response.status === 200) {
