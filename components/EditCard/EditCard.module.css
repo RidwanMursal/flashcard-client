@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+  position: relative;
+  background-color: white;
+
+  margin-bottom: 0.5rem;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+  transform: translateX(-50%);
+
+  background-color: rgba(128, 128, 128, 0.233);
+}
+
+.question[data-question]::before {
+  content: "Q";
+  position: absolute;
+  left: 1.2rem;
+  top: 1rem;
+  width: 10px;
+  height: 10px;
+
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.answer[data-answer]::before {
+  content: "A";
+  position: absolute;
+  left: 1.5rem;
+  top: 1rem;
+  width: 10px;
+  height: 10px;
+
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.focus {
+  outline: 2px rgb(73, 99, 214) solid;
+}
+
+.focus .ta {
+  color: blue;
+}
+
+.question,
+.answer {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+
+  padding-left: 2rem;
+  padding-right: 1rem;
+
+  position: relative;
+}
+
+/* .answer::before {
+  content: "";
+  width: 4px;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+
+  background-color: rgba(128, 128, 128, 0.233);
+} */
+
+/* Position absolute top: 0 bottom: 0 sets it so that its top is touching
+the top of the parent, and its bottom is touching the bottom of the parent. 
+Lastly, position absolute takes it out of the document flow so that it isn't effected
+by flexbox and other conventions.   */
+
+.ta {
+  border: none;
+
+  padding: 1rem;
+  width: 100%;
+
+  resize: none;
+  overflow-y: hidden;
+
+  height: inherit;
+
+  height: 100%;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(130%);
+
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 200ms ease-in-out,
+    background-color 200ms ease-in-out, font-size 200ms ease-in-out;
+}
+
+.close:hover {
+  font-size: 1.5rem;
+  color: white;
+  background-color: var(--sidebar-primary);
+}
+
+.ta:focus {
+  outline: none;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .container::before {
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 50%;
+
+    height: 4px;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+
+  .question,
+  .answer {
+    width: 100%;
+  }
+}

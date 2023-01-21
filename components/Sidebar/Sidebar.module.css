@@ -1,0 +1,253 @@
+.container {
+  position: sticky;
+  top: 0;
+  /* background-color: rgb(92, 90, 90); */
+  background-color: var(--sidebar-primary);
+  width: 400px;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0rem;
+
+  animation: uncollapse 800ms ease-in-out;
+  overflow-y: hidden;
+
+  z-index: 2;
+
+  /* animation: appear_slowly 1000ms ease-in-out; */
+}
+
+.collapsed_container {
+  position: sticky;
+  /* background-color: rgb(92, 90, 90); */
+  background-color: var(--sidebar-primary);
+  width: 90px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2em 0rem;
+
+  animation: collapse_container 200ms ease-in;
+
+  /* Here, because only the width is changing and not the display, i can animate on width and get the same effect*/
+}
+
+.container[data-fullscreen] {
+  animation: appear_vertically 900ms ease-in-out;
+  /* animation: appear_slowly 1000ms ease-in-out; */
+}
+
+.header {
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0rem 1rem;
+}
+
+.collapsed_icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  gap: 0.2rem;
+  margin: 0rem 1rem;
+}
+
+.site_icon {
+  width: 50px;
+  height: 50px;
+}
+
+.collapsed_site_icon {
+  width: 45px;
+  height: 45px;
+}
+
+.profile_icon {
+  width: 65px;
+  height: 65px;
+
+  border: 5px solid rgb(133, 128, 128);
+  border-radius: 100%;
+
+  object-fit: cover;
+}
+
+.collapsed_profile_icon {
+  width: 50px;
+  height: 50px;
+
+  border: 2px solid rgb(133, 128, 128);
+  border-radius: 100%;
+
+  object-fit: cover;
+}
+
+.user_details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: appear_slowly 400ms ease-in;
+  margin: 0rem 1.5rem;
+}
+
+.user_name {
+}
+
+.user_stats {
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.classes {
+}
+
+.classes_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 0.5rem;
+  margin: 0rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  animation: appear_slowly 800ms ease-in-out;
+}
+
+.plus_icon {
+  opacity: 0.8;
+  transition: color 200ms ease-in;
+}
+
+.plus_icon:hover {
+  cursor: pointer;
+  color: rgb(209, 208, 208);
+}
+
+.classes_content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  padding-top: 1rem;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.class_container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.class_icon {
+  width: 30px;
+  height: 30px;
+}
+
+.class_name {
+  font-size: 0.9rem;
+
+  /* animation: appear_slowly 800ms ease-in; */
+}
+
+.collapse_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+
+  width: 35px;
+  height: 35px;
+
+  background-color: rgb(85, 124, 172);
+  border: none;
+  outline: 1px solid rgb(54, 54, 54);
+  transition: color 300ms ease-in, background-color 300ms ease-in;
+
+  /* position it absolutely hanging off the edge slightly */
+  position: absolute;
+  right: 0%;
+  bottom: 85%;
+  transform: translate(50%, 50%);
+  z-index: 3;
+}
+
+.collapse_button:hover {
+  cursor: pointer;
+  color: bold;
+  background-color: rgb(19, 19, 107);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes nonvisable {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes collapse_container {
+  from {
+    width: 350px;
+  }
+
+  to {
+    width: 90px;
+  }
+}
+
+@keyframes uncollapse {
+  from {
+    width: 90px;
+  }
+
+  to {
+    width: 400px;
+  }
+}
+
+@keyframes appear_slowly {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear_vertically {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    height: 100vh;
+  }
+}
+
+/* 
+
+To animate between the different sidebar states, I made seperate classes depending
+on whether it was collapsed or not for certain divs (like a media query)l, and hid 
+all the text. To animate, i animated on width since i had a set width. Also animated
+on opacity for the text for a cleaner look. 
+
+*/

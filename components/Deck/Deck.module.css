@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid black;
+  padding-top: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+
+  transition: background-color 100ms ease-in;
+}
+
+.container:hover {
+  background-color: var(--deck-hover);
+}
+
+.left {
+  display: flex;
+  gap: 0.5rem;
+
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  font-size: 1.2rem;
+
+  transition: color 200ms ease-in;
+}
+
+.left:hover {
+  color: blue;
+}
+
+.percentage {
+  color: purple;
+}
+
+.icons {
+  display: flex;
+  gap: 0.5rem;
+  size: 50;
+}
+
+.icon {
+  transition: color 150ms ease-in;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: rgb(72, 72, 240);
+}

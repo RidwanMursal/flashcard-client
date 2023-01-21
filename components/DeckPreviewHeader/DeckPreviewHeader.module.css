@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  height: fit-content;
+  padding: 1rem 1rem;
+  padding-top: 2rem;
+}
+
+.left {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.dropdown_arrow:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.edit_icon {
+  cursor: pointer;
+}
+
+.study_button {
+  background-color: rgb(119, 119, 255);
+  color: black(224, 224, 224);
+  border-radius: 0.6rem;
+  padding: 0.7rem 3rem;
+  transition: color 500ms ease-in, background-color 500ms ease-in;
+
+  border: none;
+}
+
+.study_button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: blue;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .edit_icon {
+    display: none;
+  }
+
+  .container {
+    padding: 1rem 0rem;
+  }
+
+  .left {
+    gap: 0.4rem;
+  }
+
+  .study_button {
+    padding: 0.5rem 1.8rem;
+  }
+
+  .dropdown_arrow {
+    display: none;
+  }
+}

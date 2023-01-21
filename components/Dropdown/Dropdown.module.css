@@ -1,0 +1,79 @@
+.container {
+    
+    position: absolute;
+    top: 100%;
+    background-color: rgb(143, 143, 143);
+    
+    border-radius: 0.5rem;
+    min-width: 300px;
+
+   
+    z-index: 2;
+    opacity: 0; 
+    visibility: hidden;
+    
+    
+
+    transition: opacity 150ms ease-in;
+    
+}
+
+
+
+
+.item {
+    transition: color background-color 300ms ease-in; 
+    font-size: 1.2rem;
+    padding: 0.5rem 0.8rem;
+
+}
+
+.item:hover {
+    background-color: rgb(143, 95, 95);
+    color: white; 
+    cursor: pointer;
+}
+
+.item[data-color]:hover {
+    color: attr(data-color);
+}
+
+.item[data-secondary-color]:hover {
+    cursor: pointer;
+    background-color: attr(data-color-secondary color, red);
+}
+
+.open {opacity: 1; visibility: visible;}
+.hidden {
+    animation: close_menu 150ms ease-in;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.close {animation: close_menu 150ms ease-in;}
+
+@keyframes open_menu {
+    from {
+        
+        opacity: 0;
+    }
+
+    to {
+
+        opacity: 1; 
+    }
+}
+
+@keyframes close_menu {
+    from {
+        visibility: visible;
+        opacity: 1;
+    }
+
+   
+    to {
+        visibility: hidden;
+        opacity: 0;
+        
+    }
+}

@@ -1,0 +1,31 @@
+.bar {
+    /* outline: 10px solid green; */
+    border-radius: 50%; 
+    width: 10rem; height: 10rem;
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+
+    position: relative; 
+    margin-top: 10rem;
+    margin-left: 10rem;
+    
+}
+
+
+
+.bar[data-percent]::after {
+    content: attr(data-percent); 
+    position: absolute; 
+    background: rgb(255, 255, 255);
+    width: 7rem; 
+    height: 7rem; 
+    border-radius: 50%;
+
+    position: absolute; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

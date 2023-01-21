@@ -1,0 +1,138 @@
+.container {
+  border-radius: 1rem;
+
+  width: 100%;
+  max-width: 900px;
+  /* min-width: 500px;
+    max-width: 900px; */
+  /* outline: 2px blue solid; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  /* position: absolute;  */
+
+  /* max-height: 650px; */
+  height: 600px;
+
+  /* height: 100%; */
+
+  animation: appear 300ms ease-in;
+}
+
+.flip {
+  animation: animate_flip 300ms ease-in;
+  opacity: 0;
+  pointer-events: none;
+  /* opacity is set to zero because while the state is changing
+    and after the flip animation ends, the original card that is supposed
+    to be on the screen is there for a split second. setting opacity to zero
+    makes sure that when the animation ends the card is not viewable */
+}
+
+.card {
+  border-radius: 1rem;
+  width: 100%;
+  height: 80%;
+
+  outline: 5px solid red;
+  overflow-y: scroll;
+}
+
+.question_container {
+  padding: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.answer_container {
+  animation: reveal 300ms ease-in;
+
+  border-top: 3px solid grey;
+  margin-top: 1rem;
+  padding: 1rem 0rem;
+  overflow-y: scroll;
+}
+
+.color {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: red;
+  width: 100%;
+  height: 50px;
+}
+
+.answered {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.score_prompt {
+  grid-column-start: 1;
+  grid-column-end: -1;
+
+  margin: 0 auto;
+}
+
+.button {
+  border: none;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 100;
+  }
+}
+
+@keyframes animate_flip {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0%, -100%);
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform: translate(0, 100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    height: 450px;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .answered {
+    gap: 0.5rem;
+  }
+
+  .button {
+    padding: 0.7rem 3rem;
+  }
+}

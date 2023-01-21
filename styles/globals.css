@@ -1,26 +1,72 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+:root {
+  /* color scheme  */
+  --sidebar-primary: rgba(58, 87, 122);
+  --sidebar-selected: rgb(115, 139, 168);
+  --banner: rgba(58, 87, 122, 0.8);
+  --body-background: rgb(247, 247, 247);
+  --deck-hover: rgba(10, 253, 253, 0.2);
+
+  /* buttons colours  */
+  --button-background: rgb(140, 159, 175);
+  --button-color: white;
+  --button-hover-text: rgb(189, 201, 243);
+  --button-hover-background: rgb(37, 45, 51);
+  --button-inactive-background: rgb(107, 113, 117);
+  --button-inactive-color: rgb(136, 136, 136);
+  --yes-button-background: green;
+  --no-button-background: red;
+}
+
+/* body {overflow-x: hidden;} */
+body {
+  background-color: var(--body-background);
+}
+
+.site_icon {
+  width: 50px;
+  height: 50px;
+}
+
+.profile_icon {
+  width: 65px;
+  height: 65px;
+
+  border: 5px solid rgb(133, 128, 128);
+  border-radius: 100%;
+
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  background-color: var(--button-background);
+  color: var(--button-color);
+
+  border: none;
+  border-radius: 1rem;
+
+  cursor: pointer;
+  padding: 0.5rem 0.7rem;
+  position: relative;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+button:hover {
+  font-weight: bold;
+  color: var(--button-hover-text);
+  background-color: var(--button-hover-background);
 }

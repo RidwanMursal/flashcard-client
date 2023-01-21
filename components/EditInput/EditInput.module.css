@@ -1,0 +1,40 @@
+.container {
+  outline: 2px solid rgb(138, 138, 235);
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+  max-width: 800px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  border: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 90%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.buttons_container {
+  display: flex;
+  align-items: center;
+}
+
+.cancel {
+  cursor: pointer;
+}
+
+.save {
+  padding: 0.5rem 0.7rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}

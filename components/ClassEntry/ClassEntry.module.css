@@ -1,0 +1,89 @@
+.class_container {
+  /* display: flex; 
+    gap: 0.5rem;
+    padding: 0.2rem; */
+  position: relative;
+  padding: 0rem 1rem;
+}
+
+.class_container[data-selected] * {
+  color: white;
+  /* background-color: green; */
+}
+
+.class_container[data-selected]::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  width: 5px;
+  height: 100%;
+
+  background-color: rgb(224, 221, 221);
+}
+
+.class_container[data-hover]::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: 0;
+
+  height: 100%;
+
+  background-color: var(--sidebar-selected);
+  z-index: -1;
+}
+
+.link {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.2rem;
+}
+
+.class_icon {
+  width: 45px;
+  height: 45px;
+
+  transition: width 500ms ease-in, height 500ms ease-in;
+  object-fit: cover;
+  border-radius: 0.3rem;
+}
+
+.class_name {
+  font-size: 0.9rem;
+  animation: appear_slowly 800ms ease-in;
+  margin-top: 0.5rem;
+}
+
+.selected {
+  background-color: var(--sidebar-selected);
+  border-radius: 0.2rem;
+}
+
+.selected_collapsed {
+  outline: 2px solid red;
+  background: red;
+  width: 45px;
+  height: 45px;
+}
+
+.delete_button {
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes appear_slowly {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

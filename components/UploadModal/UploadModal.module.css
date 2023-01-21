@@ -1,0 +1,123 @@
+.backdrop {
+  /* position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex; 
+    justify-content: center;
+    align-items: center; */
+
+  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: green;  */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* width: 100vw; 
+    height: 100vh;  */
+  z-index: 5;
+}
+
+.container {
+  position: fixed;
+  /* top: 0; bottom: 0; left: 0; right: 0; 
+    width: 100vw; 
+    height: 100vh;  */
+  z-index: 4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  /* background-color: white;
+
+  padding: 2rem 8rem;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 1rem;
+  z-index: 6;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  text-align: center; */
+
+  background-color: white;
+
+  /* padding: 2rem 8rem; */
+  padding: 2rem 0rem;
+  width: 95%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  /* line-height: 1; */
+
+  border-radius: 1rem;
+  z-index: 6;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  gap: 0.2rem;
+}
+
+.input {
+  border-radius: 0.3rem;
+  border-color: rgb(98, 98, 138);
+  border-width: 2px;
+
+  padding: 0.5rem 0.3rem;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.upload {
+  outline: 3px dotted green;
+  padding: 0.5rem;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.import_button {
+  margin-top: 0.5rem;
+  width: 70%;
+  max-width: 280px;
+}
+
+.import_button[data-not-clickable] {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: var(--button-inactive-background);
+  color: var(--button-inactive-color);
+}
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}
