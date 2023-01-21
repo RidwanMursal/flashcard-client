@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Sidebar.module.css";
 import Modal from "../Modal/index";
 import ClassEntry from "../ClassEntry/index";
-import defaultImage from "../../../book.png";
+import defaultImage from "../../book.png";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsSkipBackward, BsSkipForward } from "react-icons/bs";
 import {

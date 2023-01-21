@@ -1,7 +1,7 @@
 import styles from "./ClassDecks.module.css";
 import Deck from "../Deck/index";
 import { FaEdit } from "react-icons/fa";
-import stockImage from "../../../book.png";
+import stockImage from "../../book.png";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getDecks } from "../../api/getRequests";

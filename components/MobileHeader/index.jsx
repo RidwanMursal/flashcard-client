@@ -1,5 +1,5 @@
 import styles from "./MobileHeader.module.css";
-import x from "../../../book.png";
+import defaultImage from "../../book.png";
 import Sidebar from "../Sidebar/index";
 import { IoMdArrowBack } from "react-icons/io";
 import { useState } from "react";
@@ -16,7 +16,7 @@ const MobileHeader = ({ username, profilePicture }) => {
         </div>
       </Link>
 
-      <img src={x.src} alt="profile_icon" className="profile_icon" />
+      <img src={defaultImage.src} alt="profile_icon" className="profile_icon" />
     </div>
   );
 

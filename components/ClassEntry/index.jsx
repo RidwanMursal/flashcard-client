@@ -1,5 +1,5 @@
 import React from "react";
-import defaultPicture from "../../../book.png";
+import defaultPicture from "../../book.png";
 import styles from "./ClassEntry.module.css";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
