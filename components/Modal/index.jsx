@@ -44,8 +44,9 @@ const Modal = ({
           onChange={(e) => setInputValue(e.target.value)}
         />
 
-        {buttons.map((button) => (
+        {buttons.map((button, i) => (
           <button
+            key={i}
             className={styles.button}
             onClick={() => button.onClick(args)}
           >

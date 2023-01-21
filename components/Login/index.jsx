@@ -81,7 +81,7 @@ const LoginComponent = () => {
           Login
         </button>
         <p>
-          Don't have an account?
+          Don&apos;t have an account?
           <Link href="/register">Click here</Link>
           To register
         </p>
