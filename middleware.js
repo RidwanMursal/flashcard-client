@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export const middleware = (req) => {
   const url = req.url;
   const cookie = req.cookies.get("refreshToken");
-  console.log("THIS IS THE URL", cookie);
+  console.log("THIS IS THE URL", url);
   console.log("THIS IS THE COOKIE", cookie);
   //console.log(cookie)
   //console.log(`in middleware, the url is ${url}`)
