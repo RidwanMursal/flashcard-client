@@ -24,7 +24,7 @@ const closeModal = ({ modalSetter }) => {
   modalSetter(false);
 };
 
-const classEntry = ({
+const ClassEntry = ({
   name,
   collapsed,
   username,
@@ -94,4 +94,4 @@ const classEntry = ({
   );
 };
 
-export default classEntry;
+export default ClassEntry;

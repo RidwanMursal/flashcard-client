@@ -24,7 +24,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const study = ({ decks, currDeck, username }) => {
+const Study = ({ decks, currDeck, username }) => {
   const { width } = useWindowDimensions();
   const [loading, setLoading] = useState(true);
   useAxiosPrivate();
@@ -108,4 +108,4 @@ export const getServerSideProps = async ({
   //return {props: {username: user, class_, decks: decks.data, cards: cards.data, currDeck: deck, randomCards}}
 };
 
-export default study;
+export default Study;

@@ -25,7 +25,7 @@ const closeModal = ({ modalSetter }) => {
   modalSetter(false);
 };
 
-const index = ({ deck, setDecks }) => {
+const Deck = ({ deck, setDecks }) => {
   console.log("this is the deck", deck.id);
   const router = useRouter();
   const { user, class_ } = router.query;
@@ -80,4 +80,4 @@ const index = ({ deck, setDecks }) => {
   );
 };
 
-export default index;
+export default Deck;

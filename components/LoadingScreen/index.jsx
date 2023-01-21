@@ -1,7 +1,7 @@
 import styles from "./LoadingScreen.module.css";
 import { useState, useEffect } from "react";
 
-const index = ({ loading }) => {
+const LoadingScreen = ({ loading }) => {
   const [destroy, setDestroy] = useState(false);
   // have some state variable notify me to transition it out without
   // making it display none. Then use useeffect kind of like on animation end
@@ -36,4 +36,4 @@ const index = ({ loading }) => {
   );
 };
 
-export default index;
+export default LoadingScreen;

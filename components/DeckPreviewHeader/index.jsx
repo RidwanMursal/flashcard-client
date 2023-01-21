@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import EditInput from "../EditInput";
 
-const index = ({ currDeck, decks, username, class_ }) => {
+const DeckPreviewHeader = ({ currDeck, decks, username, class_ }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   console.log(decks);
@@ -80,4 +80,4 @@ const index = ({ currDeck, decks, username, class_ }) => {
   );
 };
 
-export default index;
+export default DeckPreviewHeader;

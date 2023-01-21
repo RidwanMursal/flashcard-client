@@ -40,7 +40,7 @@ const addDeck = async ({
   return;
 };
 
-const index = ({ classData, username, classImage }) => {
+const ClassDecks = ({ classData, username, classImage }) => {
   const router = useRouter();
   console.log("THIS IS THE CLASS DATA", classData);
   // use state will only pass the initial value on the first render
@@ -161,4 +161,4 @@ const index = ({ classData, username, classImage }) => {
   );
 };
 
-export default index;
+export default ClassDecks;

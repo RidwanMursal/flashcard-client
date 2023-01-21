@@ -1,10 +1,10 @@
-import RegisterComponent from "../components/Register/index.jsx"
+import RegisterComponent from "../components/Register/index.jsx";
 const Register = () => {
   return (
     <>
-        <RegisterComponent /> 
+      <RegisterComponent />
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

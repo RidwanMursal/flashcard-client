@@ -9,7 +9,7 @@ import Toast from "../components/Toast";
 
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZ3VuIiwiYXV0aG9yaXR5IjoidXNlciIsImlhdCI6MTY3MzkwODg2OCwiZXhwIjoxNjczOTA4ODk4fQ.4J3DZGcwlSL8moJKV8XIBNHP3pEjrez9Xle1d-Lc0_o"
 
-const refreshTest = () => {
+const RefreshTest = () => {
   const axioso = useAxiosPrivate();
 
   const callCards = async () => {
@@ -77,4 +77,4 @@ const refreshTest = () => {
   );
 };
 
-export default refreshTest;
+export default RefreshTest;

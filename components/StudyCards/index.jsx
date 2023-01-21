@@ -28,7 +28,7 @@ import StudyResults from "../StudyResults";
 
 //   (aside: overloading: using same method definition but changing the parameters)`
 // }]
-const index = ({ cards, deck }) => {
+const StudyCards = ({ cards, deck }) => {
   const [cardsCompleted, setCardsCompleted] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const card = cards[cardsCompleted];
@@ -73,4 +73,4 @@ const index = ({ cards, deck }) => {
   );
 };
 
-export default index;
+export default StudyCards;

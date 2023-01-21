@@ -9,7 +9,7 @@ import { getCards, getDecks } from "../../../../../api/getRequests";
 import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
 import useWindowDimensions from "../../../../../hooks/useWindowDimensions";
 
-const edit = ({ currDeck, username, class_ }) => {
+const Edit = ({ currDeck, username, class_ }) => {
   const [loading, setLoading] = useState(true);
   const [decks, setDecks] = useState(null);
   const [cards, setCards] = useState(null);
@@ -87,4 +87,4 @@ export const getServerSideProps = async ({
 
   return { props: { username: user, class_, currDeck: deck } };
 };
-export default edit;
+export default Edit;

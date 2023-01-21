@@ -58,7 +58,7 @@ const save = async (cards, setCards) => {
   });
 };
 
-const index = ({ cards, deckID }) => {
+const EditSection = ({ cards, deckID }) => {
   console.log("CARDS CHANGED HERE ARE CARDS", cards);
   const patchCards = cards.map((card) => {
     return { ...card, operation: "patch" };
@@ -116,4 +116,4 @@ const index = ({ cards, deckID }) => {
   );
 };
 
-export default index;
+export default EditSection;

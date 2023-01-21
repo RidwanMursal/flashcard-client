@@ -67,7 +67,7 @@ const closeModal = ({ modalSetter }) => {
   modalSetter(false);
 };
 
-const index = ({ card, setCardsState }) => {
+const EditCard = ({ card, setCardsState }) => {
   const { question, answer, id } = card;
   const [inFocus, setInFocus] = useState(false);
   const [questionState, setQuestionState] = useState(question);
@@ -172,4 +172,4 @@ const index = ({ card, setCardsState }) => {
   );
 };
 
-export default index;
+export default EditCard;

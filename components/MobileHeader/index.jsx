@@ -6,7 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useStateContext } from "../../context/authContext";
 
-const index = ({ username, profilePicture }) => {
+const MobileHeader = ({ username, profilePicture }) => {
   return (
     <div className={styles.container}>
       <Link href={`/dashboard/${username}`}>
@@ -34,4 +34,4 @@ const index = ({ username, profilePicture }) => {
   // )
 };
 
-export default index;
+export default MobileHeader;
