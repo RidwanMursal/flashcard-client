@@ -11,7 +11,8 @@ export const middleware = (req) => {
   // error occurs here if you come from authorized to unauthorized
   // ie if you delete the && !cookie part. This has to do with context
   /// come back to it later
-  if (url.includes("/dashboard")) {
-    return NextResponse.redirect("https://flashcard-client.vercel.app/");
-  }
+  //   if (url.includes("/dashboard")) {
+  //     return NextResponse.redirect("https://flashcard-client.vercel.app/");
+  //   }
+  return;
 };
