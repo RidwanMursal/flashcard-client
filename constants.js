@@ -1,1 +1,1 @@
-export const BASEURL = "http://localhost:5050"
+export const BASEURL = "https://flashcards-production-1525.up.railway.app";
