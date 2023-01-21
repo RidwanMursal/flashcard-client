@@ -12,6 +12,6 @@ export const middleware = (req) => {
   // ie if you delete the && !cookie part. This has to do with context
   /// come back to it later
   if (url.includes("/dashboard") && !cookie) {
-    return NextResponse.redirect("https://flashcard-client.vercel.app/login");
+    return NextResponse.redirect("https://flashcard-client.vercel.app/");
   }
 };
