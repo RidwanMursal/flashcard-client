@@ -11,7 +11,6 @@ const submitLogin = async (data, setErrorFlag, router, setUser) => {
   const response = await login(data);
   // if status is 200, redirect to login
   if (response.status === 200) {
-    alert(router.asPath);
     setErrorFlag(false);
     // localStorage.setItem("token", response.data.accessToken)
     // localStorage.setItem("username", data.username)
