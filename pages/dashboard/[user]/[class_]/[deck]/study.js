@@ -31,12 +31,12 @@ const Study = ({ decks, currDeck, username, class_ }) => {
   const [loading, setLoading] = useState(true);
   useAxiosPrivate();
   const [userData, setUserData] = useState([]);
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(null);
   const [deck, setDeck] = useState(null);
 
   useEffect(() => {
     console.log(cards);
-    if (cards.length > 0) setCards(shuffleArray(cards));
+    if (cards?.length > 0) setCards(shuffleArray(cards));
   }, [cards]);
 
   useEffect(() => {

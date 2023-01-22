@@ -71,7 +71,7 @@ const EditSection = ({ cards, deckID }) => {
   useEffect(() => {
     // If there are not  cards in deck, add a new empty card
     // so user sees inputs
-    if (cardsState?.length === 0) {
+    if (!cardsState || cardsState?.length === 0) {
       setCardsState([
         { question: "", answer: "", deck_id: deckID, operation: "post" },
       ]);
@@ -93,8 +93,8 @@ const EditSection = ({ cards, deckID }) => {
             setCardsState((prev) => {
               // if user already added a new card but hasn't
               // inputted anything yet, don't add a new card
-              // if (!prev.slice(-1)[0].answer && !prev.slice(-1)[0].question)
-              //   return;
+              if (!prev.slice(-1)[0].answer && !prev.slice(-1)[0].question)
+                return prev;
               return [
                 ...prev,
                 {
@@ -108,7 +108,6 @@ const EditSection = ({ cards, deckID }) => {
             })
           }
         />
-        {/* Click on the plus sign to add a card. */}
         <button
           className={styles.save}
           onClick={() => save(cardsState, setCardsState, setDisplayToast)}

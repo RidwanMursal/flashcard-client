@@ -22,6 +22,7 @@
 
 .collapsed_container {
   position: sticky;
+  top: 0;
   /* background-color: rgb(92, 90, 90); */
   background-color: var(--sidebar-primary);
   width: 90px;
@@ -90,6 +91,7 @@
   border-radius: 100%;
 
   object-fit: cover;
+  cursor: pointer;
 }
 
 .user_details {
