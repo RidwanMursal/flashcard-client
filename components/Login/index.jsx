@@ -83,7 +83,9 @@ const LoginComponent = () => {
         </button>
         <p>
           Don&apos;t have an account?
-          <Link href="/register">Click here</Link>
+          <Link href="/register">
+            <span className={styles.span}>Click here</span>
+          </Link>
           To register
         </p>
       </div>

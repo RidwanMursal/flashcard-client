@@ -13,6 +13,7 @@ import AddItem from "../AddItem";
 import EditInput from "../EditInput";
 import NoContentMessage from "../NoContentMessage";
 import UploadModal from "../UploadModal";
+import Toast from "../Toast";
 import { BASEURL } from "../../constants";
 import {
   ADD_DECK_MESSAGE,
@@ -52,6 +53,7 @@ const ClassDecks = ({ classData, username, classImage }) => {
   const [openDeckModal, setOpenDeckModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [imageModal, setImageModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     const callGetDecks = async () => {

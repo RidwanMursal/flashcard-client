@@ -32,22 +32,12 @@ const Deck = ({ deck, setDecks }) => {
   const [deleteDeckModal, setDeleteDeckModal] = useState(false);
   return (
     <div className={styles.container}>
-      <div className={styles.left}>
-        <SiBookstack />
-        <p>{deck.name}</p>
-
-        {/* <p className={styles.percentage}>20%</p>
-
-        <div className={styles.deck_info}>
-          <div className={styles.text}>
-            <h3 className={styles.title}></h3>
-            <p>{deck.name}</p>
-            <p className={styles.cards_studied}>3 of 3 unique cards studied</p>
-          </div>
-
-          <div className={styles.progress_bar}></div>
-        </div> */}
-      </div>
+      <Link href={`/dashboard/${user}/${class_}/${deck.id}/study`}>
+        <div className={styles.left}>
+          <SiBookstack />
+          <p>{deck.name}</p>
+        </div>
+      </Link>
 
       <div className={styles.icons}>
         <Link href={`/dashboard/${user}/${class_}/${deck.id}/study`}>
@@ -74,7 +64,9 @@ const Deck = ({ deck, setDecks }) => {
             { text: "Yes, Delete.", onClick: callDeleteDeck },
           ]}
         />
-        <SlArrowRight className={styles.icon} size={23} />
+        <Link href={`/dashboard/${user}/${class_}/${deck.id}/study`}>
+          <SlArrowRight className={styles.icon} size={23} />
+        </Link>
       </div>
     </div>
   );
