@@ -18,6 +18,8 @@ import { BASEURL } from "../../constants";
 import {
   ADD_DECK_MESSAGE,
   ADD_DECK_TITLE,
+  TOAST_DECK_ADDED,
+  TOAST_IMAGE_UPLOADED,
   UPLOAD_IMAGE_MESSAGE,
   UPLOAD_TITLE,
 } from "../../modalMessages";
@@ -28,6 +30,7 @@ const addDeck = async ({
   contentSetter,
   setInputValue,
   modalSetter,
+  setDisplayToast,
 }) => {
   const { className: deckName } = data;
   const args = { classID: router.query.class_, name: deckName };
@@ -37,6 +40,7 @@ const addDeck = async ({
     contentSetter((prev) => [...prev, response.data[0]]);
     setInputValue("");
     modalSetter(false);
+    setDisplayToast(true);
   }
   return;
 };
@@ -53,7 +57,7 @@ const ClassDecks = ({ classData, username, classImage }) => {
   const [openDeckModal, setOpenDeckModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [imageModal, setImageModal] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+  const [addDeckToast, setAddDeckToast] = useState(false);
 
   useEffect(() => {
     const callGetDecks = async () => {
@@ -131,6 +135,12 @@ const ClassDecks = ({ classData, username, classImage }) => {
             title={ADD_DECK_TITLE}
             message={ADD_DECK_MESSAGE}
             buttons={[{ text: "Submit", onClick: addDeck }]}
+            setDisplayToast={setAddDeckToast}
+          />
+          <Toast
+            show={addDeckToast}
+            setShow={setAddDeckToast}
+            message={TOAST_DECK_ADDED}
           />
         </div>
 

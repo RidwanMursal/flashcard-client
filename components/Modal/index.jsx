@@ -13,7 +13,7 @@ const Modal = ({
   contentSetter,
   contentID,
   noInput,
-  imageInput,
+  setDisplayToast,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const data = { className: inputValue };
@@ -26,6 +26,7 @@ const Modal = ({
     contentID,
     router,
     setInputValue,
+    setDisplayToast,
   };
 
   console.log("THE CONTENT ID IS", contentID);

@@ -7,16 +7,27 @@ import { useRouter } from "next/router";
 import { AiOutlineClose } from "react-icons/ai";
 import { deleteClass } from "../../api/deleteRequests";
 import Modal from "../Modal";
+import Toast from "../Toast";
 import { BASEURL } from "../../constants";
-import { DELETE_ClASS_TITLE, DELETE_MESSAGE } from "../../modalMessages";
+import {
+  DELETE_ClASS_TITLE,
+  DELETE_MESSAGE,
+  TOAST_CLASS_DELETED,
+} from "../../modalMessages";
 
-const callDeleteClass = async ({ contentID, contentSetter, modalSetter }) => {
+const callDeleteClass = async ({
+  contentID,
+  contentSetter,
+  modalSetter,
+  setDisplayToast,
+}) => {
   const response = await deleteClass(contentID);
   console.log("IN DELETE CLASS IN CLASS ENTRY, THE RESPONSE IS", response);
   if (response.status === 200) {
     contentSetter((prev) => prev.filter((class_) => class_.id !== contentID));
-    alert("it worked");
+    // alert("it worked");
     modalSetter(false);
+    setDisplayToast(false);
   }
 };
 
@@ -36,6 +47,7 @@ const ClassEntry = ({
   const selected = router.query.class_ == classID;
   const [deleteClassModal, setDeleteClassModal] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [deleteClassToast, setDeleteClassToast] = useState(false);
   const entryRef = useRef(null);
   console.log("PICTURE FOR CLASS IN ICONS", classPicture);
 
@@ -89,6 +101,13 @@ const ClassEntry = ({
           { text: "No, Go Back!", onClick: closeModal },
           { text: "Yes, Delete.", onClick: callDeleteClass },
         ]}
+        setDisplayToast={setDeleteClassToast}
+      />
+
+      <Toast
+        show={deleteClassToast}
+        setShow={setDeleteClassToast}
+        message={TOAST_CLASS_DELETED}
       />
     </div>
   );

@@ -14,12 +14,14 @@ import { postClass } from "../../api/postRequests";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import UploadModal from "../UploadModal";
+import Toast from "../Toast";
 import { BASEURL } from "../../constants";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import Link from "next/link";
 import {
   ADD_ClASS_MESSAGE,
   ADD_CLASS_TITLE,
+  TOAST_CLASS_ADDED,
   UPLOAD_IMAGE_MESSAGE,
   UPLOAD_TITLE,
 } from "../../modalMessages";
@@ -30,6 +32,7 @@ const addClass = async ({
   contentSetter,
   setInputValue,
   modalSetter,
+  setDisplayToast,
 }) => {
   console.log("this is the user", username);
   const response = await postClass(username, data);
@@ -38,6 +41,7 @@ const addClass = async ({
     contentSetter((prev) => [...prev, response.data[0]]);
     setInputValue("");
     modalSetter(false);
+    setDisplayToast(true);
   }
   return;
 };
@@ -53,6 +57,7 @@ const Sidebar = ({ width, username, profilePicture, currClass }) => {
   const [deckCount, setDeckCount] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
+  const [addClassToast, setAddClassToast] = useState(false);
 
   //console.log("these are the classes", classes)
   useEffect(() => {
@@ -145,8 +150,15 @@ const Sidebar = ({ width, username, profilePicture, currClass }) => {
             message={ADD_ClASS_MESSAGE}
             username={username}
             buttons={[{ text: "Submit", onClick: addClass }]}
+            setDisplayToast={setAddClassToast}
           />
         </div>
+
+        <Toast
+          show={addClassToast}
+          setShow={setAddClassToast}
+          message={TOAST_CLASS_ADDED}
+        />
 
         <div className={styles.classes_content}>
           {classes.map((className) => (

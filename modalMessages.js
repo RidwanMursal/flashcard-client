@@ -15,6 +15,9 @@ export const DELETE_CARD_TITLE = "Delete This Card?";
 export const DELETE_MESSAGE = "You won't be able to get it back!";
 
 export const TOAST_DECK_ADDED = "Deck Was Added Successfully!";
+export const TOAST_DECK_DELETED = "Deck Has Been Deleted Succsessfully.";
 export const TOAST_CLASS_ADDED = "Class Was Added Successfully!";
+export const TOAST_CLASS_DELETED = "Class Has Been Deleted Succsessfully.";
 export const TOAST_IMAGE_UPLOADED = "Image Was uploaded Successfully!";
 export const TOAST_CARDS_SAVED = "Cards were saved Successfully!";
+export const TOAST_CARD_DELETED = "Card Has Been Deleted Succsessfully.";

@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
 import useWindowDimensions from "../../../../../hooks/useWindowDimensions";
+import { useRouter } from "next/router";
 
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
 const shuffleArray = (array) => {
@@ -24,8 +25,9 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const Study = ({ decks, currDeck, username }) => {
+const Study = ({ decks, currDeck, username, class_ }) => {
   const { width } = useWindowDimensions();
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   useAxiosPrivate();
   const [userData, setUserData] = useState([]);
@@ -50,6 +52,8 @@ const Study = ({ decks, currDeck, username }) => {
       console.log("deck id is", currDeck);
       const cardsResponse = await getCards(currDeck);
       console.log("HERE IS cards DATA", cardsResponse.data);
+      if (cardsResponse.data.length === 0)
+        router.replace(`/dashboard/${username}/${class_}/${currDeck}/edit`);
       setCards(cardsResponse.data);
     };
 
@@ -67,6 +71,8 @@ const Study = ({ decks, currDeck, username }) => {
 
   useEffect(() => {
     if (width && cards && deck && userData) setLoading(false);
+    // if (cards.length === 0)
+    //   router.replace(`/dashboard/${username}/${class_}/${currDeck}/edit`);
   }, [width, cards, deck, userData]);
 
   // if (!deck) return;
@@ -96,7 +102,7 @@ const Study = ({ decks, currDeck, username }) => {
 export const getServerSideProps = async ({
   params: { user, class_, deck },
 }) => {
-  return { props: { username: user, class_, currDeck: deck } };
+  return { props: { username: user, class_, currDeck: deck, class_ } };
   // console.log(`IN GET SERVER PROPS FOR STUDY PAGE, user: ${user} class: ${class_} deck : ${deck}`)
   // // retrieve all decks for this class, and all cards from this specific deck
   // const decks = await getDecks(class_)

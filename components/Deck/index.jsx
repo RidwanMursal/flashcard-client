@@ -6,18 +6,35 @@ import { SiBookstack } from "react-icons/si";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Modal from "../Modal";
+import Toast from "../Toast";
 import { deleteDeck } from "../../api/deleteRequests";
 import { useState } from "react";
-import { DELETE_DECK_TITLE, DELETE_MESSAGE } from "../../modalMessages";
+import {
+  DELETE_DECK_TITLE,
+  DELETE_MESSAGE,
+  TOAST_DECK_DELETED,
+} from "../../modalMessages";
 
-const callDeleteDeck = async ({ contentID, contentSetter, modalSetter }) => {
+const callDeleteDeck = async ({
+  contentID,
+  contentSetter,
+  modalSetter,
+  setDisplayToast,
+}) => {
   console.log("deck id is", contentID);
   const response = await deleteDeck(contentID);
   console.log("IN DELETE DECK IN CLASS DECKS, THE RESPONSE IS", response);
   if (response.status === 200) {
     contentSetter((prev) => prev.filter((deck) => deck.id !== contentID));
-    alert("it worked");
     modalSetter(false);
+    console.log("DISPLAY DELETE DECK TOAST", setDisplayToast);
+    let x;
+    setDisplayToast((prev) => {
+      x = prev;
+      console.log("PREVVVVV IS", prev);
+      return !prev;
+    });
+    console.log("XXXX", x);
   }
 };
 
@@ -30,6 +47,8 @@ const Deck = ({ deck, setDecks }) => {
   const router = useRouter();
   const { user, class_ } = router.query;
   const [deleteDeckModal, setDeleteDeckModal] = useState(false);
+  const [deleteDeckToast, setDeleteDeckToast] = useState(false);
+  // const [addDeckToast, setAddDeckToast] = useState(false);
   return (
     <div className={styles.container}>
       <Link href={`/dashboard/${user}/${class_}/${deck.id}/study`}>
@@ -63,6 +82,13 @@ const Deck = ({ deck, setDecks }) => {
             { text: "No, Go Back!", onClick: closeModal },
             { text: "Yes, Delete.", onClick: callDeleteDeck },
           ]}
+          setDisplayToast={setDeleteDeckToast}
+        />
+
+        <Toast
+          show={deleteDeckToast}
+          setShow={setDeleteDeckToast}
+          message={TOAST_DECK_DELETED}
         />
         <Link href={`/dashboard/${user}/${class_}/${deck.id}/study`}>
           <SlArrowRight className={styles.icon} size={23} />

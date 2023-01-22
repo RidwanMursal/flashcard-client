@@ -31,7 +31,6 @@ const UploadModal = ({
   title,
   message,
   modalSetter,
-  contentSetter,
   contentID,
   profileFlag,
 }) => {

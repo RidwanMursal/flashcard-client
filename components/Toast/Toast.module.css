@@ -1,6 +1,6 @@
 .toast {
   /* visibility: hidden; */
-  width: 250px;
+  min-width: 250px;
   background-color: #333;
   color: #fff;
   text-align: center;
@@ -12,6 +12,9 @@
   opacity: 0;
 
   transition: bottom 1s ease-in, opacity 0.5s ease-in;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  z-index: 1000;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */

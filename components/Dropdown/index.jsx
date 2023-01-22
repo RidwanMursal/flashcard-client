@@ -8,7 +8,6 @@ const Dropdown = ({ items, open, colorPrimary, color, colorSecondary }) => {
   return (
     <div
       className={open ? `${styles.container} ${styles.open}` : styles.container}
-      style={{ backgroundColor: colorPrimary }}
     >
       {items.map((item) => {
         return (

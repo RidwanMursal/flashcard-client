@@ -1,14 +1,16 @@
 import styles from "./EditSection.module.css";
 import EditCard from "../EditCard/index";
+import Toast from "../Toast";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdAddCircle } from "react-icons/md";
 import { useState, useRef, useEffect } from "react";
 import { patchCard } from "../../api/pachRequests";
 import { postCard } from "../../api/postRequests";
 import AddItem from "../AddItem";
+import { TOAST_CARDS_SAVED } from "../../modalMessages";
 
 export const patchMultipleCards = async (cards) => {
-  if (cards.length < 1) return;
+  if (cards.length < 1) return -1;
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
     console.log("HERE IS THE CARD", card);
@@ -23,7 +25,7 @@ export const patchMultipleCards = async (cards) => {
 };
 
 export const postMultipleCards = async (cards) => {
-  if (cards.length < 1) return;
+  if (cards.length < 1) return -1;
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
     const data = {
@@ -37,7 +39,7 @@ export const postMultipleCards = async (cards) => {
   }
 };
 
-const save = async (cards, setCards) => {
+const save = async (cards, setCards, setDisplayToast) => {
   setCards((prev) => {
     console.log("CARDS IN SAVE PRE FILTER", prev);
     // filter out empty cards
@@ -53,6 +55,7 @@ const save = async (cards, setCards) => {
 
     patchMultipleCards(patchCards);
     postMultipleCards(postCards);
+    setDisplayToast(true);
 
     return newCards;
   });
@@ -60,6 +63,7 @@ const save = async (cards, setCards) => {
 
 const EditSection = ({ cards, deckID }) => {
   console.log("CARDS CHANGED HERE ARE CARDS", cards);
+  const [displayToast, setDisplayToast] = useState(false);
   const patchCards = cards.map((card) => {
     return { ...card, operation: "patch" };
   });
@@ -107,10 +111,15 @@ const EditSection = ({ cards, deckID }) => {
         {/* Click on the plus sign to add a card. */}
         <button
           className={styles.save}
-          onClick={() => save(cardsState, setCardsState)}
+          onClick={() => save(cardsState, setCardsState, setDisplayToast)}
         >
           Save
         </button>
+        <Toast
+          show={displayToast}
+          setShow={setDisplayToast}
+          message={TOAST_CARDS_SAVED}
+        />
       </div>
     </div>
   );
