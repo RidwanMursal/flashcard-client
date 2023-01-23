@@ -3,7 +3,8 @@ import { MdAddCircle } from "react-icons/md";
 import Modal from "../Modal";
 import { useState, useEffect } from "react";
 import { postDeck, postClass } from "../../api/postRequests";
-import { postMultipleCards, patchMultipleCards } from "../EditSection";
+import { TOAST_DECK_ADDED } from "../../modalMessages";
+import Toast from "../Toast";
 
 const addClass = async ({
   username,
@@ -29,6 +30,7 @@ const addDeck = async ({
   contentSetter,
   setInputValue,
   modalSetter,
+  setDisplayToast,
 }) => {
   const { className: deckName } = data;
   const args = { classID: router.query.class_, name: deckName };
@@ -38,6 +40,7 @@ const addDeck = async ({
     contentSetter((prev) => [...prev, response.data[0]]);
     setInputValue("");
     modalSetter(false);
+    setDisplayToast(true);
   }
   return;
 };
@@ -55,6 +58,7 @@ const AddItem = ({ message, purpose, contentSetter, collapsed }) => {
     message: "Add Deck",
     buttons: [{ text: "Submit", onClick: addDeck }],
   };
+  const [showToast, setShowToast] = useState(false);
   //   const addCardFunctions = {
   //     title: "Make a new deck",
   //     message: "Add Deck",
@@ -72,8 +76,6 @@ const AddItem = ({ message, purpose, contentSetter, collapsed }) => {
         return { ...prev, ...addDeckFunctions };
       });
   }, []);
-
-  //else setFunctions(prev => {return {...prev, ...addCardFunctions}})
 
   if (props.buttons) {
     return (
@@ -93,6 +95,12 @@ const AddItem = ({ message, purpose, contentSetter, collapsed }) => {
           title={props.title}
           message={props.message}
           buttons={props.buttons}
+          setDisplayToast={setShowToast}
+        />
+        <Toast
+          show={showToast}
+          setShow={setShowToast}
+          message={TOAST_DECK_ADDED}
         />
       </div>
     );

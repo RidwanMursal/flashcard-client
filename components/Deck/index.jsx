@@ -14,29 +14,7 @@ import {
   DELETE_MESSAGE,
   TOAST_DECK_DELETED,
 } from "../../modalMessages";
-
-const callDeleteDeck = async ({
-  contentID,
-  contentSetter,
-  modalSetter,
-  setDisplayToast,
-}) => {
-  console.log("deck id is", contentID);
-  const response = await deleteDeck(contentID);
-  console.log("IN DELETE DECK IN CLASS DECKS, THE RESPONSE IS", response);
-  if (response.status === 200) {
-    contentSetter((prev) => prev.filter((deck) => deck.id !== contentID));
-    modalSetter(false);
-    console.log("DISPLAY DELETE DECK TOAST", setDisplayToast);
-    let x;
-    setDisplayToast((prev) => {
-      x = prev;
-      console.log("PREVVVVV IS", prev);
-      return !prev;
-    });
-    console.log("XXXX", x);
-  }
-};
+import { callDeleteDeck } from "./functions";
 
 const closeModal = ({ modalSetter }) => {
   modalSetter(false);

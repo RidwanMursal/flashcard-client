@@ -64,7 +64,10 @@ export default function Home({ user, class_ }) {
               profilePicture={userData.profile_picture}
             />
           ) : (
-            <MobileHeader username={user} />
+            <MobileHeader
+              username={user}
+              profilePicture={userData.profile_picture}
+            />
           )}
           <ClassDecks classData={classData} username={user} />
         </div>

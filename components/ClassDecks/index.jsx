@@ -5,13 +5,10 @@ import stockImage from "../../book.png";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getDecks } from "../../api/getRequests";
-import { postDeck } from "../../api/postRequests";
-import { deleteDeck } from "../../api/deleteRequests";
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "../Modal";
 import AddItem from "../AddItem";
 import EditInput from "../EditInput";
-import NoContentMessage from "../NoContentMessage";
 import UploadModal from "../UploadModal";
 import Toast from "../Toast";
 import { BASEURL } from "../../constants";
@@ -19,33 +16,33 @@ import {
   ADD_DECK_MESSAGE,
   ADD_DECK_TITLE,
   TOAST_DECK_ADDED,
-  TOAST_IMAGE_UPLOADED,
   UPLOAD_IMAGE_MESSAGE,
   UPLOAD_TITLE,
 } from "../../modalMessages";
+import { addDeck } from "./functions";
 
-const addDeck = async ({
-  data,
-  router,
-  contentSetter,
-  setInputValue,
-  modalSetter,
-  setDisplayToast,
-}) => {
-  const { className: deckName } = data;
-  const args = { classID: router.query.class_, name: deckName };
-  const response = await postDeck(args);
-  console.log("IN CLASSDECKS ADD CLASS, THIS WAS THE RESPONSE", response.data);
-  if (response.status === 200) {
-    contentSetter((prev) => [...prev, response.data[0]]);
-    setInputValue("");
-    modalSetter(false);
-    setDisplayToast(true);
-  }
-  return;
-};
+// const addDeck = async ({
+//   data,
+//   router,
+//   contentSetter,
+//   setInputValue,
+//   modalSetter,
+//   setDisplayToast,
+// }) => {
+//   const { className: deckName } = data;
+//   const args = { classID: router.query.class_, name: deckName };
+//   const response = await postDeck(args);
+//   console.log("IN CLASSDECKS ADD CLASS, THIS WAS THE RESPONSE", response.data);
+//   if (response.status === 200) {
+//     contentSetter((prev) => [...prev, response.data[0]]);
+//     setInputValue("");
+//     modalSetter(false);
+//     setDisplayToast(true);
+//   }
+//   return;
+// };
 
-const ClassDecks = ({ classData, username, classImage }) => {
+const ClassDecks = ({ classData, username }) => {
   const router = useRouter();
   console.log("THIS IS THE CLASS DATA", classData);
   // use state will only pass the initial value on the first render

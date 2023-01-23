@@ -8,58 +8,59 @@ import { patchCard } from "../../api/pachRequests";
 import { postCard } from "../../api/postRequests";
 import AddItem from "../AddItem";
 import { TOAST_CARDS_SAVED } from "../../modalMessages";
+import { save } from "./functions";
 
-export const patchMultipleCards = async (cards) => {
-  if (cards.length < 1) return -1;
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    console.log("HERE IS THE CARD", card);
-    const data = {
-      question: card.question,
-      answer: card.answer,
-      deckID: card.deck_id,
-    };
-    const response = await patchCard(card.id, data);
-    console.log(response);
-  }
-};
+// export const patchMultipleCards = async (cards) => {
+//   if (cards.length < 1) return -1;
+//   for (let i = 0; i < cards.length; i++) {
+//     const card = cards[i];
+//     console.log("HERE IS THE CARD", card);
+//     const data = {
+//       question: card.question,
+//       answer: card.answer,
+//       deckID: card.deck_id,
+//     };
+//     const response = await patchCard(card.id, data);
+//     console.log(response);
+//   }
+// };
 
-export const postMultipleCards = async (cards) => {
-  if (cards.length < 1) return -1;
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    const data = {
-      question: card.question,
-      answer: card.answer,
-      deckID: card.deck_id,
-    };
-    console.log("HERE IS THE DATA", data);
-    const response = await postCard(data);
-    console.log(response);
-  }
-};
+// export const postMultipleCards = async (cards) => {
+//   if (cards.length < 1) return -1;
+//   for (let i = 0; i < cards.length; i++) {
+//     const card = cards[i];
+//     const data = {
+//       question: card.question,
+//       answer: card.answer,
+//       deckID: card.deck_id,
+//     };
+//     console.log("HERE IS THE DATA", data);
+//     const response = await postCard(data);
+//     console.log(response);
+//   }
+// };
 
-const save = async (cards, setCards, setDisplayToast) => {
-  setCards((prev) => {
-    console.log("CARDS IN SAVE PRE FILTER", prev);
-    // filter out empty cards
-    const newCards = prev.filter(
-      (card) => card.question !== "" && card.answer !== ""
-    );
-    console.log("HERE ARE THE CARDS POST FILER", newCards);
-    //  switch bettween the post and patch requests
-    const postCards = newCards.filter((card) => card.operation === "post");
-    const patchCards = newCards.filter((card) => card.operation === "patch");
-    console.log("HERE ARE THE POSTCARDS", postCards);
-    console.log("HERE ARE THE PATCH CARDS", patchCards);
+// const save = async (cards, setCards, setDisplayToast) => {
+//   setCards((prev) => {
+//     console.log("CARDS IN SAVE PRE FILTER", prev);
+//     // filter out empty cards
+//     const newCards = prev.filter(
+//       (card) => card.question !== "" && card.answer !== ""
+//     );
+//     console.log("HERE ARE THE CARDS POST FILER", newCards);
+//     //  switch bettween the post and patch requests
+//     const postCards = newCards.filter((card) => card.operation === "post");
+//     const patchCards = newCards.filter((card) => card.operation === "patch");
+//     console.log("HERE ARE THE POSTCARDS", postCards);
+//     console.log("HERE ARE THE PATCH CARDS", patchCards);
 
-    patchMultipleCards(patchCards);
-    postMultipleCards(postCards);
-    setDisplayToast(true);
+//     patchMultipleCards(patchCards);
+//     postMultipleCards(postCards);
+//     setDisplayToast(true);
 
-    return newCards;
-  });
-};
+//     return newCards;
+//   });
+// };
 
 const EditSection = ({ cards, deckID }) => {
   console.log("CARDS CHANGED HERE ARE CARDS", cards);
@@ -93,7 +94,11 @@ const EditSection = ({ cards, deckID }) => {
             setCardsState((prev) => {
               // if user already added a new card but hasn't
               // inputted anything yet, don't add a new card
-              if (!prev.slice(-1)[0].answer && !prev.slice(-1)[0].question)
+              if (
+                prev.length > 0 &&
+                !prev.slice(-1)[0].answer &&
+                !prev.slice(-1)[0].question
+              )
                 return prev;
               return [
                 ...prev,

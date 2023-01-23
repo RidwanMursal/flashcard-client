@@ -3,31 +3,6 @@ import styles from "./StudyCards.module.css";
 import { useState } from "react";
 import StudyResults from "../StudyResults";
 
-// const cards = [{
-//     question: "4 main concepts",
-//     answer: `a
-//     Encapsulation- the idea of bundling data and methods that work on that data within one unit
-
-//     Abstraction-
-
-//     Inheritance
-
-//     Polymorphism
-
-//     (aside: overloading: using same method definition but changing the parameters)`
-// }, {
-//   question: "4 main concepts",
-//   answer: `a
-//   Encapsulation- the idea of bundling data and methods that work on that data within one unit
-
-//   Abstraction-
-
-//   Inheritance
-
-//   Polymorphism
-
-//   (aside: overloading: using same method definition but changing the parameters)`
-// }]
 const StudyCards = ({ cards, deck }) => {
   const [cardsCompleted, setCardsCompleted] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
@@ -61,7 +36,6 @@ const StudyCards = ({ cards, deck }) => {
           />
         ) : null}
 
-        {/* {cards.map( (card, i) => <StudyCard card={card} cardsCompleted={cardsCompleted} numberOfCards={cards.length} setCardsCompleted={setCardsCompleted} correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers} index={i}/>)} */}
         {cardsCompleted > 0 && cardsCompleted == cards.length ? (
           <StudyResults
             totalCards={cards.length}

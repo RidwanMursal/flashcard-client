@@ -5,12 +5,7 @@ import ClassEntry from "../ClassEntry/index";
 import defaultImage from "../../book.png";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsSkipBackward, BsSkipForward } from "react-icons/bs";
-import {
-  getClasses,
-  getDecks,
-  getDecksFromUsername,
-} from "../../api/getRequests";
-import { postClass } from "../../api/postRequests";
+import { getClasses, getDecksFromUsername } from "../../api/getRequests";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import UploadModal from "../UploadModal";
@@ -25,26 +20,7 @@ import {
   UPLOAD_IMAGE_MESSAGE,
   UPLOAD_TITLE,
 } from "../../modalMessages";
-
-const addClass = async ({
-  username,
-  data,
-  contentSetter,
-  setInputValue,
-  modalSetter,
-  setDisplayToast,
-}) => {
-  console.log("this is the user", username);
-  const response = await postClass(username, data);
-  console.log("IN SIDEBAR ADD CLASS, THIS WAS THE RESPONSE", response.data);
-  if (response.status === 200) {
-    contentSetter((prev) => [...prev, response.data[0]]);
-    setInputValue("");
-    modalSetter(false);
-    setDisplayToast(true);
-  }
-  return;
-};
+import { addClass } from "./functions";
 
 const Sidebar = ({ width, username, profilePicture, currClass }) => {
   const router = useRouter();

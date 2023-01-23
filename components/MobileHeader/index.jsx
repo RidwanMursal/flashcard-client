@@ -1,10 +1,8 @@
 import styles from "./MobileHeader.module.css";
 import defaultImage from "../../book.png";
-import Sidebar from "../Sidebar/index";
 import { IoMdArrowBack } from "react-icons/io";
-import { useState } from "react";
 import Link from "next/link";
-import { useStateContext } from "../../context/authContext";
+import { BASEURL } from "../../constants";
 
 const MobileHeader = ({ username, profilePicture }) => {
   return (
@@ -16,22 +14,17 @@ const MobileHeader = ({ username, profilePicture }) => {
         </div>
       </Link>
 
-      <img src={defaultImage.src} alt="profile_icon" className="profile_icon" />
+      <img
+        src={
+          profilePicture
+            ? `${BASEURL}/static/${profilePicture}`
+            : defaultImage.src
+        }
+        alt="profile_icon"
+        className="profile_icon"
+      />
     </div>
   );
-
-  // return ( visibleSidebar ? <Sidebar width={"100%"}/> :
-  //   <div className={styles.container}>
-
-  //       <div className={styles.exit}>
-  //         <IoMdArrowBack size={40} onClick={() => setvisibleSidebar((prev) => !prev) }/>
-  //         <p className={styles.my_classes}>My Classes</p>
-  //       </div>
-
-  //       <img src={x.src} alt="site_icon" className="site_icon"/>
-  //       <img src={x.src} alt="profile_icon" className="profile_icon"/>
-  //   </div>
-  // )
 };
 
 export default MobileHeader;

@@ -90,7 +90,10 @@ const Study = ({ decks, currDeck, username, class_ }) => {
               profilePicture={userData.profile_picture}
             />
           ) : (
-            <MobileHeader username={username} />
+            <MobileHeader
+              username={username}
+              profilePicture={userData.profile_picture}
+            />
           )}
           <StudyCards cards={cards} deck={deck} />
         </div>

@@ -4,64 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import Modal from "../Modal";
 import { deleteCard } from "../../api/deleteRequests";
 import { DELETE_CARD_TITLE, DELETE_MESSAGE } from "../../modalMessages";
-
-/**
- * auto adjusts height of text area when overflow-y occurs
- * @param {element} e
- */
-const autoResize = (element) => {
-  console.log("THIS IS E", element);
-  element.style.height = 0;
-  element.style.height = element.scrollHeight + "px";
-};
-
-// const save = (prev, current) => {
-//   if (current === false && prev === true ) {
-//     alert("left focus")
-//   }
-
-// }
-
-const focused = (element) => {
-  element.setAttribute("data-focused", "true");
-};
-
-const setCards = (setCardsState, question, answer, id) => {
-  console.log(`IN SET CARDS STATES question: ${question} answer: ${answer}`);
-  setCardsState((prev) => {
-    return prev.map((card) => {
-      console.log("HEYY THIS IS THE PREV", prev);
-      console.log("HEYY THIS IS THE CARD", card);
-      if (card.id === id) {
-        card.question = question;
-        card.answer = answer;
-      }
-      return card;
-    });
-  });
-};
-
-const callDeleteCard = async ({
-  contentID,
-  contentSetter,
-  modalSetter,
-  operation,
-}) => {
-  if (operation === "post") {
-    contentSetter((prev) => prev.filter((card) => card.id !== contentID));
-    return;
-  }
-  console.log("in edit card, the card is is:", contentID);
-
-  const response = await deleteCard(contentID);
-  console.log("IN DELETE CARD IN CLASS DECKS, THE RESPONSE IS", response);
-  if (response.status === 200) {
-    console.log("ID IS", contentID);
-    contentSetter((prev) => prev.filter((card) => card.id !== contentID));
-    alert("it worked");
-    modalSetter(false);
-  }
-};
+import { autoResize, setCards, callDeleteCard } from "./functions";
 
 const closeModal = ({ modalSetter }) => {
   modalSetter(false);
@@ -77,26 +20,13 @@ const EditCard = ({ card, setCardsState }) => {
   const focusRef = useRef(null);
   const [deleteCardModal, setDeleteCardModal] = useState(false);
 
-  // useAutosizeTextArea(questionRef.current, questionState )
-
-  // if you would like to save every time user changes input
-  // have a useeffect that goes off every time question or answer state changes
-  // and send an update request to api. But first check if the div is out of focus.
-
   useEffect(() => {
     autoResize(questionRef.current);
     autoResize(answerRef.current);
-    // document.querySelectorAll(`.${styles.ta}`).forEach(element => {
-    //   autoResize(element)
-    // })
   }, []);
 
   useEffect(() => {
     setCards(setCardsState, questionState, answerState, id);
-    //save(focusRef.current, inFocus)
-    // document.querySelectorAll(`.${styles.ta}`).forEach(element => {
-    //   autoResize(element)
-    // })
   }, [answerState, questionState]);
 
   return (
@@ -121,6 +51,7 @@ const EditCard = ({ card, setCardsState }) => {
           { text: "No, Go Back!", onClick: closeModal },
           { text: "Yes, Delete.", onClick: callDeleteCard },
         ]}
+        operation={card.operation}
       />
 
       <div className={styles.question} data-question="Q">
@@ -143,14 +74,6 @@ const EditCard = ({ card, setCardsState }) => {
             setQuestionState(e.target.value);
           }}
         ></textarea>
-
-        {/* <div className={styles.button}>
-          <button tabIndex="-1" className={styles.picture_button}>
-            hello
-          </button>
-          <button tabIndex="-1" className={styles.audio_button}></button>
-          
-        </div> */}
       </div>
 
       <div className={styles.answer} data-answer="A">

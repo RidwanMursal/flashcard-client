@@ -15,7 +15,7 @@ export const getServerSideProps = async ({ req }) => {
 
   console.log("decoded string is", user);
   // if user exists in refresh token, skip login
-  if (user.name) {
+  if (user && user.name) {
     return {
       redirect: {
         permanent: false,

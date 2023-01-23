@@ -23,15 +23,8 @@ const DeckPreviewHeader = ({ currDeck, decks, username, class_ }) => {
 
   useEffect(() => {
     setCurrDeckInfo(decks.filter((deck) => deck.id === parseInt(currDeck))[0]);
-    // const dropdownItems = decks.map((deck) => {
-    //   return {
-    //     ...deck,
-    //     href: `/dashboard/${username}/${class_}/${deck.id}/edit`,
-    //   };
-    // });
   }, [currDeck]);
 
-  //   const items = ["Lesson One", "Lesson Two", "Lesson Three"]
   return (
     <>
       <header className={styles.container}>

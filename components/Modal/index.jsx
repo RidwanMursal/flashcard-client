@@ -1,7 +1,6 @@
 import styles from "./Modal.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useStateContext } from "../../context/authContext";
 
 const Modal = ({
   title,
@@ -14,6 +13,7 @@ const Modal = ({
   contentID,
   noInput,
   setDisplayToast,
+  operation,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const data = { className: inputValue };
@@ -27,6 +27,7 @@ const Modal = ({
     router,
     setInputValue,
     setDisplayToast,
+    operation,
   };
 
   console.log("THE CONTENT ID IS", contentID);

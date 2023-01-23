@@ -8,7 +8,6 @@ const StudyResults = ({ totalCards, correctAnswers }) => {
   const percent = (correctAnswers / totalCards) * 100;
   const [valueEnd, setValueEnd] = useState(0);
   useEffect(() => {
-    //setValueEnd(90);
     console.log("PERCENT", percent);
     setTimeout(() => setValueEnd(percent.toFixed(2)), 10);
   }, []);
@@ -18,7 +17,6 @@ const StudyResults = ({ totalCards, correctAnswers }) => {
       <div>
         <h1 className={styles.h1}>CHECKPOINT REACHED</h1>
       </div>
-      {/* <div style={{ padding: "40px 40px 40px 40px", margin: "auto" }}> */}
       <div className={styles.progress_wrapper}>
         <ProgressProvider valueStart={10} valueEnd={valueEnd}>
           {(value) => <CircularProgressbar value={value} text={`${value}%`} />}
@@ -33,7 +31,6 @@ const StudyResults = ({ totalCards, correctAnswers }) => {
           Try Again
         </button>
       </div>
-      {/* </div> */}
     </div>
   );
 };
