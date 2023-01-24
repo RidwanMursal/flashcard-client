@@ -3,9 +3,10 @@ import styles from "./Sidebar.module.css";
 import Modal from "../Modal/index";
 import ClassEntry from "../ClassEntry/index";
 import defaultImage from "../../book.png";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineLogout, AiOutlinePlus } from "react-icons/ai";
 import { BsSkipBackward, BsSkipForward } from "react-icons/bs";
 import { getClasses, getDecksFromUsername } from "../../api/getRequests";
+import { deleteToken } from "../../api/authRequests";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import UploadModal from "../UploadModal";
@@ -22,6 +23,12 @@ import {
 } from "../../modalMessages";
 import { addClass } from "./functions";
 
+const logout = async () => {
+  const response = await deleteToken();
+  if (response.status === 200) location.reload();
+  // refreshing without cookie will log us out
+};
+
 const Sidebar = ({ width, username, profilePicture, currClass }) => {
   const router = useRouter();
   console.log("HELLO THIS IS THE PROFILE PICTURE", profilePicture);
@@ -35,7 +42,6 @@ const Sidebar = ({ width, username, profilePicture, currClass }) => {
   const [imageModal, setImageModal] = useState(false);
   const [addClassToast, setAddClassToast] = useState(false);
 
-  //console.log("these are the classes", classes)
   useEffect(() => {
     const callGetClasses = async () => {
       const classes = await getClasses(username, axios);
@@ -55,11 +61,6 @@ const Sidebar = ({ width, username, profilePicture, currClass }) => {
       callGetDecksFromUsername();
     }
   }, [username]);
-
-  // if (classes.length > 0 && router.asPath === `/dashboard/${username}`) {
-  //   router.push(`/dashboard/${username}/${classes[0].id}`)
-  //   return
-  // }
 
   return (
     <div
@@ -97,7 +98,6 @@ const Sidebar = ({ width, username, profilePicture, currClass }) => {
             }
             onClick={() => setImageModal(true)}
           />
-          {/* <UploadModal title="upload image" message="hello" openModal={imageModal} modalSetter={setImageModal} contentID={username} profileFlag={true}/>  */}
         </div>
 
         <div className={collapsed ? styles.hidden : styles.user_details}>
@@ -156,6 +156,13 @@ const Sidebar = ({ width, username, profilePicture, currClass }) => {
         onClick={() => setCOllapsed((prev) => !prev)}
       >
         {collapsed ? <BsSkipForward size={15} /> : <BsSkipBackward size={15} />}
+      </button>
+      <button
+        className={width === "100%" ? styles.hidden : null}
+        onClick={() => logout()}
+        style={{ margin: "0.5rem" }}
+      >
+        Logout
       </button>
     </div>
   );
