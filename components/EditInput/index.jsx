@@ -65,8 +65,8 @@ const EditInput = ({
           onClick={() => {
             console.log(`content is`, content);
 
-            if (content.class_picture) saveClass(args);
-            else if (content.name) saveDeck(args);
+            if (content.name) saveDeck(args);
+            else saveClass(args);
           }}
         >
           Save
