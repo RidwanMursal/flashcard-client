@@ -12,7 +12,7 @@
   gap: 2rem;
   padding: 2rem 0rem;
 
-  animation: uncollapse 800ms ease-in-out;
+  animation: uncollapse 300ms ease-in-out;
   /* overflow-y: hidden; */
 
   z-index: 2;
