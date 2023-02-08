@@ -54,7 +54,7 @@ const Study = ({ decks, currDeck, username, class_ }) => {
       console.log("HERE IS cards DATA", cardsResponse.data);
       if (cardsResponse.data.length === 0)
         router.replace(`/dashboard/${username}/${class_}/${currDeck}/edit`);
-      setCards(cardsResponse.data);
+      else setCards(cardsResponse.data);
     };
 
     const callGetDeck = async () => {
@@ -71,13 +71,7 @@ const Study = ({ decks, currDeck, username, class_ }) => {
 
   useEffect(() => {
     if (width && cards && deck && userData) setLoading(false);
-    // if (cards.length === 0)
-    //   router.replace(`/dashboard/${username}/${class_}/${currDeck}/edit`);
   }, [width, cards, deck, userData]);
-
-  // if (!deck) return;
-
-  // if (cards.length === 0 || userData.length === 0) return <h1>Loading...</h1>
 
   return (
     <>
@@ -106,15 +100,6 @@ export const getServerSideProps = async ({
   params: { user, class_, deck },
 }) => {
   return { props: { username: user, class_, currDeck: deck, class_ } };
-  // console.log(`IN GET SERVER PROPS FOR STUDY PAGE, user: ${user} class: ${class_} deck : ${deck}`)
-  // // retrieve all decks for this class, and all cards from this specific deck
-  // const decks = await getDecks(class_)
-  // const cards = await getCards(deck)
-  // const randomCards = shuffleArray(cards.data)
-  // console.log("here are the decks", decks.data)
-  // console.log("here are the cards", cards.data)
-
-  //return {props: {username: user, class_, decks: decks.data, cards: cards.data, currDeck: deck, randomCards}}
 };
 
 export default Study;
