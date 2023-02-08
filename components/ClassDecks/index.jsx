@@ -21,27 +21,6 @@ import {
 } from "../../modalMessages";
 import { addDeck } from "./functions";
 
-// const addDeck = async ({
-//   data,
-//   router,
-//   contentSetter,
-//   setInputValue,
-//   modalSetter,
-//   setDisplayToast,
-// }) => {
-//   const { className: deckName } = data;
-//   const args = { classID: router.query.class_, name: deckName };
-//   const response = await postDeck(args);
-//   console.log("IN CLASSDECKS ADD CLASS, THIS WAS THE RESPONSE", response.data);
-//   if (response.status === 200) {
-//     contentSetter((prev) => [...prev, response.data[0]]);
-//     setInputValue("");
-//     modalSetter(false);
-//     setDisplayToast(true);
-//   }
-//   return;
-// };
-
 const ClassDecks = ({ classData, username }) => {
   const router = useRouter();
   console.log("THIS IS THE CLASS DATA", classData);
@@ -58,23 +37,21 @@ const ClassDecks = ({ classData, username }) => {
 
   useEffect(() => {
     const callGetDecks = async () => {
-      console.log("count");
-      console.log("In classDecks, CURRENT CLASS IS", currClass);
+      //console.log("count");
+      //console.log("In classDecks, CURRENT CLASS IS", currClass);
       const response = await getDecks(currClass);
-      console.log("In classDecks, here are the decks", response.data);
+      //console.log("In classDecks, here are the decks", response.data);
       setDecks(response.data);
     };
     if (classData) {
       setClass(classData);
       callGetDecks();
     }
-    //console.log("THIS IS CLASS DATA IN CLASS ECKS USE EFFECT", class_)
   }, [classData]);
 
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
-        {/* <div className={styles.class_icon}></div> */}
         <img
           src={
             class_.class_picture
@@ -147,19 +124,6 @@ const ClassDecks = ({ classData, username }) => {
           ))}
         </div>
 
-        {/* {decks.length === 0 ? (
-          <NoContentMessage
-            message={"You don't have any decks yet, try adding some!"}
-            size={1.5}
-            bold={true}
-          />
-        ) : (
-          <div className={styles.decks}>
-            {decks.map((deck) => (
-              <Deck deck={deck} setDecks={setDecks} />
-            ))}
-          </div>
-        )} */}
         <AddItem
           message={"Add Deck"}
           purpose={"add deck"}

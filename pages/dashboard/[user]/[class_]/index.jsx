@@ -6,8 +6,6 @@ import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import styles from "../../../../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { getClasses, getClass, getUser } from "../../../../api/getRequests";
-import { useRouter } from "next/router";
-import { useStateContext } from "../../../../context/authContext.js";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 
 export default function Home({ user, class_ }) {
@@ -16,22 +14,22 @@ export default function Home({ user, class_ }) {
   const [userData, setUserData] = useState("");
   const [classData, setClassData] = useState("");
   const axios = useAxiosPrivate();
-  console.log("THIS IS THE CLASS ID", class_);
+  //console.log("THIS IS THE CLASS ID", class_);
 
   useEffect(() => {
     const callGetUser = async () => {
-      console.log("username is", user);
+      ///console.log("username is", user);
       const user_ = await getUser(user, axios);
-      console.log(user_.data);
-      console.log("HERE IS USER DATA", user_.data);
+      //console.log(user_.data);
+      //console.log("HERE IS USER DATA", user_.data);
       setUserData(user_.data[0]);
     };
 
     const callGetClass = async () => {
-      console.log("class id is", class_);
+      //console.log("class id is", class_);
       const response = await getClass(class_, axios);
       //console.log(response.data)
-      console.log("HERE IS CLASS DATA", response.data);
+      //console.log("HERE IS CLASS DATA", response.data);
       setClassData(response.data[0]);
     };
 
@@ -82,11 +80,5 @@ export const getServerSideProps = async ({ params: { user, class_ }, req }) => {
     return { props: { user, class_ } };
   }
 
-  // console.log(`IN GET SERVER PROPS, user: ${user} class: ${class_}`)
-  // const classResponse = await getClass(class_)
-  // const userResponse = await getUser(user)
-  // const profilePicture = userResponse.data[0].profile_picture
-  // const classData = classResponse.data[0]
-  // console.log(classData)
   return { props: { classData, user, profilePicture } };
 };
